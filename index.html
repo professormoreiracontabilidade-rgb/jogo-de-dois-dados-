@@ -3,228 +3,238 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jogo dos Dados</title>
+<title>Jogo dos Dados Mobile</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    user-select:none;
-    -webkit-tap-highlight-color:transparent;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
 }
 
 body{
-    background:#050505;
-    color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
-    overflow:hidden;
+  background:radial-gradient(circle at top,#123b78,#02040a 70%);
+  color:white;
+  font-family:Arial, Helvetica, sans-serif;
+  height:100vh;
+  overflow:hidden;
 }
 
 .topo{
-    background:#08275c;
-    padding:18px;
-    text-align:center;
-    font-size:34px;
-    font-weight:bold;
-    letter-spacing:2px;
+  height:70px;
+  background:#071f4d;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  font-size:24px;
+  font-weight:bold;
+  color:#ffd400;
 }
 
 .sub{
-    text-align:center;
-    margin-top:20px;
-    font-size:22px;
-    font-weight:bold;
+  text-align:center;
+  padding:14px;
+  font-size:18px;
+  font-weight:bold;
 }
 
 .area{
-    height:75vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
+  height:calc(100vh - 130px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 }
 
 .dados{
-    display:flex;
-    gap:60px;
-    margin-bottom:40px;
+  display:flex;
+  gap:22px;
+  margin-bottom:28px;
 }
 
 .dado{
-    width:150px;
-    height:150px;
-    background:white;
-    border-radius:25px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    grid-template-rows:repeat(3,1fr);
-    padding:15px;
-    box-shadow:0 0 30px rgba(255,255,255,.25);
+  width:130px;
+  height:130px;
+  background:white;
+  border-radius:24px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows:repeat(3,1fr);
+  padding:14px;
+  box-shadow:0 0 25px rgba(255,255,255,.45);
 }
 
 .ponto{
-    width:22px;
-    height:22px;
-    background:#000;
-    border-radius:50%;
-    justify-self:center;
-    align-self:center;
-    visibility:hidden;
+  width:20px;
+  height:20px;
+  background:#000;
+  border-radius:50%;
+  justify-self:center;
+  align-self:center;
+  visibility:hidden;
 }
 
 .resultado{
-    margin-top:20px;
-    font-size:70px;
-    font-weight:bold;
-    color:#ffd400;
-    letter-spacing:5px;
+  font-size:54px;
+  font-weight:bold;
+  color:#ffd400;
+  margin-top:10px;
 }
 
 .soma{
-    margin-top:20px;
-    background:#0b8f24;
-    padding:15px 45px;
-    border-radius:50px;
-    font-size:34px;
-    font-weight:bold;
+  margin-top:18px;
+  background:#0b8f24;
+  padding:14px 36px;
+  border-radius:40px;
+  font-size:28px;
+  font-weight:bold;
 }
 
 .rodape{
-    position:absolute;
-    bottom:25px;
-    width:100%;
-    text-align:center;
-    font-size:20px;
-    color:#bbb;
+  position:absolute;
+  bottom:14px;
+  width:100%;
+  text-align:center;
+  font-size:16px;
+  color:#ddd;
 }
 
-.animar{
-    animation:girar .7s linear;
+.girando{
+  animation:girar .22s linear infinite;
 }
 
 @keyframes girar{
-    0%{transform:rotate(0deg) scale(.8);}
-    20%{transform:rotate(180deg) scale(1.1);}
-    40%{transform:rotate(360deg);}
-    60%{transform:rotate(540deg);}
-    80%{transform:rotate(720deg);}
-    100%{transform:rotate(900deg);}
+  0%{transform:rotate(0deg) scale(.92);}
+  50%{transform:rotate(180deg) scale(1.08);}
+  100%{transform:rotate(360deg) scale(.92);}
 }
 </style>
 </head>
 
-<body>
+<body onclick="controlarDados()">
 
 <div class="topo">
 🎲 JOGO DOS DADOS 🎲
 </div>
 
-<div class="sub">
-Toque em qualquer lugar da tela
+<div class="sub" id="mensagem">
+Toque na tela para começar
 </div>
 
-<div class="area" onclick="rolar()">
+<div class="area">
 
-<div class="dados">
+  <div class="dados">
+    <div class="dado" id="d1">
+      <div class="ponto"></div><div class="ponto"></div><div class="ponto"></div>
+      <div class="ponto"></div><div class="ponto"></div><div class="ponto"></div>
+      <div class="ponto"></div><div class="ponto"></div><div class="ponto"></div>
+    </div>
 
-<div class="dado" id="d1">
-<div class="ponto"></div><div class="ponto"></div><div class="ponto"></div>
-<div class="ponto"></div><div class="ponto"></div><div class="ponto"></div>
-<div class="ponto"></div><div class="ponto"></div><div class="ponto"></div>
-</div>
+    <div class="dado" id="d2">
+      <div class="ponto"></div><div class="ponto"></div><div class="ponto"></div>
+      <div class="ponto"></div><div class="ponto"></div><div class="ponto"></div>
+      <div class="ponto"></div><div class="ponto"></div><div class="ponto"></div>
+    </div>
+  </div>
 
-<div class="dado" id="d2">
-<div class="ponto"></div><div class="ponto"></div><div class="ponto"></div>
-<div class="ponto"></div><div class="ponto"></div><div class="ponto"></div>
-<div class="ponto"></div><div class="ponto"></div><div class="ponto"></div>
-</div>
+  <div class="resultado" id="resultado">
+    1 + 1
+  </div>
 
-</div>
-
-<div class="resultado" id="resultado">
-1 + 1
-</div>
-
-<div class="soma" id="soma">
-SOMA = 2
-</div>
+  <div class="soma" id="soma">
+    SOMA = 2
+  </div>
 
 </div>
 
-<div class="rodape">
-Toque para rolar novamente
+<div class="rodape" id="rodape">
+Toque para girar os dados
 </div>
 
 <script>
-
-const faces={
-1:[4],
-2:[0,8],
-3:[0,4,8],
-4:[0,2,6,8],
-5:[0,2,4,6,8],
-6:[0,2,3,5,6,8]
+const faces = {
+  1:[4],
+  2:[0,8],
+  3:[0,4,8],
+  4:[0,2,6,8],
+  5:[0,2,4,6,8],
+  6:[0,2,3,5,6,8]
 };
 
-function desenhar(id,valor){
+let girando = false;
+let intervalo = null;
+let valor1 = 1;
+let valor2 = 1;
 
-let pontos=document.querySelectorAll("#"+id+" .ponto");
+function desenhar(id, valor){
+  let pontos = document.querySelectorAll("#" + id + " .ponto");
 
-pontos.forEach(p=>p.style.visibility="hidden");
+  pontos.forEach(p => p.style.visibility = "hidden");
 
-faces[valor].forEach(i=>{
-pontos[i].style.visibility="visible";
-});
-
+  faces[valor].forEach(i => {
+    pontos[i].style.visibility = "visible";
+  });
 }
 
 function sorteio(){
-return Math.floor(Math.random()*6)+1;
+  return Math.floor(Math.random() * 6) + 1;
 }
 
-function rolar(){
+function controlarDados(){
+  if(!girando){
+    iniciarGiro();
+  }else{
+    pararGiro();
+  }
+}
 
-let dado1=document.getElementById("d1");
-let dado2=document.getElementById("d2");
+function iniciarGiro(){
+  girando = true;
 
-dado1.classList.add("animar");
-dado2.classList.add("animar");
+  document.getElementById("mensagem").innerHTML = "🎲 Dados girando rápido...";
+  document.getElementById("rodape").innerHTML = "Toque na tela para parar";
 
-let intervalo=setInterval(()=>{
+  document.getElementById("d1").classList.add("girando");
+  document.getElementById("d2").classList.add("girando");
 
-let a=sorteio();
-let b=sorteio();
+  intervalo = setInterval(() => {
+    valor1 = sorteio();
+    valor2 = sorteio();
 
-desenhar("d1",a);
-desenhar("d2",b);
+    desenhar("d1", valor1);
+    desenhar("d2", valor2);
 
-},80);
+    document.getElementById("resultado").innerHTML = valor1 + " + " + valor2;
+    document.getElementById("soma").innerHTML = "SOMA = " + (valor1 + valor2);
+  }, 45);
+}
 
-setTimeout(()=>{
+function pararGiro(){
+  girando = false;
 
-clearInterval(intervalo);
+  clearInterval(intervalo);
 
-let a=sorteio();
-let b=sorteio();
+  valor1 = sorteio();
+  valor2 = sorteio();
 
-desenhar("d1",a);
-desenhar("d2",b);
+  desenhar("d1", valor1);
+  desenhar("d2", valor2);
 
-document.getElementById("resultado").innerHTML=a+" + "+b;
-document.getElementById("soma").innerHTML="SOMA = "+(a+b);
+  document.getElementById("resultado").innerHTML = valor1 + " + " + valor2;
+  document.getElementById("soma").innerHTML = "SOMA = " + (valor1 + valor2);
 
-dado1.classList.remove("animar");
-dado2.classList.remove("animar");
+  document.getElementById("d1").classList.remove("girando");
+  document.getElementById("d2").classList.remove("girando");
 
-},900);
-
+  document.getElementById("mensagem").innerHTML = "Resultado final";
+  document.getElementById("rodape").innerHTML = "Toque novamente para girar";
 }
 
 desenhar("d1",1);
 desenhar("d2",1);
-
 </script>
 
 </body>
